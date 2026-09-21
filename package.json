@@ -1,0 +1,23 @@
+{
+  "name": "achieveai",
+  "version": "1.0.0",
+  "main": "dist/achieveai.js",
+  "scripts": {
+    "build": "parcel build achieveai.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/genai": "^2.23.0",
+    "dotenv": "^18.0.2"
+  },
+  "targets": {
+    "main": {
+      "includeNodeModules": true
+    }
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  }
+}
