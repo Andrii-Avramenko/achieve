@@ -29,7 +29,7 @@ const subject = document.querySelector(".question-progress-subject");
 
 const context = {
   type: "text",
-  text: `You are helping a student by giving him short answers without explanation just straight up answer the subject it scottish ${subject} make sure the question is appropriate for SQA and uses appropriate terms for SQA ${subject}, meaning if an SQA marker were to mark your answer you would be correct also do not include any unnecessary symbols like fullstops and explanation marks, just state the answer. The question is: `,
+  text: `Giving short answers without explanation just straight up answer the subject it scottish ${subject} make sure the question is appropriate for SQA and uses appropriate terms for SQA ${subject}, meaning if an SQA marker were to mark your answer you would be correct also do not include any unnecessary symbols like fullstops and explanation marks, just state the answer. The question is: `,
 };
 
 const ai = new GoogleGenAI({

@@ -1,4 +1,4 @@
-javascript:(function() {
+
 function $parcel$interopDefault(a) {
   return a && a.__esModule ? a.default : a;
 }
@@ -27615,7 +27615,7 @@ const $bef08b463d312310$var$textField = document.querySelector("#text-answer");
 const $bef08b463d312310$var$subject = document.querySelector(".question-progress-subject");
 const $bef08b463d312310$var$context = {
     type: "text",
-    text: `You are helping a student by giving him short answers without explanation just straight up answer the subject it scottish ${$bef08b463d312310$var$subject} make sure the question is appropriate for SQA and uses appropriate terms for SQA ${$bef08b463d312310$var$subject}, meaning if an SQA marker were to mark your answer you would be correct also do not include any unnecessary symbols like fullstops and explanation marks, just state the answer. The question is: `
+    text: `Giving short answers without explanation just straight up answer the subject it scottish ${$bef08b463d312310$var$subject} make sure the question is appropriate for SQA and uses appropriate terms for SQA ${$bef08b463d312310$var$subject}, meaning if an SQA marker were to mark your answer you would be correct also do not include any unnecessary symbols like fullstops and explanation marks, just state the answer. The question is: `
 };
 const $bef08b463d312310$var$ai = new (0, $8c75234070f74990$export$60336eb45c8b7f44)({
     apiKey: $bef08b463d312310$var$API_KEY
@@ -27645,4 +27645,3 @@ $bef08b463d312310$var$main(); // First test: Higher Periodicity 4/5 Note: Model 
 
 
 //# sourceMappingURL=achieveai.js.map
-})
