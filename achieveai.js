@@ -8,22 +8,41 @@ const questiontab = Array.from(document.querySelector(".col").children);
 const question = questiontab.flatMap((q) => {
   switch (q.tagName) {
     case "P":
-      return [{
-        type: "text",
-        text: q.textContent,
-      }];
+      return [
+        {
+          type: "text",
+          text: q.textContent,
+        },
+      ];
     case "IMG":
-      return [{
-        type: "image",
-        uri: q.src,
-        mime_type: "image/png",
-      }];
+      return [
+        {
+          type: "image",
+          uri: q.src,
+          mime_type: "image/png",
+        },
+      ];
     default:
       return [];
   }
 });
-console.log(question);
+const mc = [];
 const textField = document.querySelector("#text-answer");
+if (!textField) {
+  const mcRows = Array.from(
+    document.querySelector(".card-body").children,
+  ).filter((i) => i.nodeName === "DIV");
+  const mcOptions = mcRows.flatMap((i) => [...i.children]);
+  const mcInput = mcOptions
+    .map((o, i) => {
+      return `${i + 1}: ${o.children[0].textContent.trim()}`;
+    })
+    .join(", ");
+  mc.push({
+    type: "text",
+    text: `(This is a multiple choice question so pick the correct option and return just a single number representing the option) Options: ${mcInput}`,
+  });
+}
 
 const subject = document.querySelector(".question-progress-subject");
 
@@ -46,13 +65,22 @@ const generationConfig = {
 async function main() {
   const interaction = await ai.interactions.create({
     model: "models/gemini-3.5-flash-lite",
-    input: [context, ...question],
+    input: [context, ...question, ...mc],
     generation_config: generationConfig,
   });
 
   if (interaction.output_text) {
     console.log(interaction.output_text);
-    textField.value = interaction.output_text;
+    if (textField) {
+      textField.value = interaction.output_text;
+      document.querySelector(`#submit-answer-button`).click()
+      return;
+    } else if (mc) {
+      document.querySelector(`button[value='${interaction.output_text}']`).click();
+    } else {
+      console.log('error! no input found')
+      return
+    }
   }
 }
 

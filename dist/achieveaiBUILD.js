@@ -27610,21 +27610,8 @@ const $bef08b463d312310$var$question = $bef08b463d312310$var$questiontab.flatMap
             return [];
     }
 });
-const $bef08b463d312310$var$mc = [];
+console.log($bef08b463d312310$var$question);
 const $bef08b463d312310$var$textField = document.querySelector("#text-answer");
-if (!$bef08b463d312310$var$textField) {
-    const mcRows = Array.from(document.querySelector(".card-body").children).filter((i)=>i.nodeName === "DIV");
-    const mcOptions = mcRows.flatMap((i)=>[
-            ...i.children
-        ]);
-    const mcInput = mcOptions.map((o, i)=>{
-        return `${i + 1}: ${o.children[0].textContent.trim()}`;
-    }).join(", ");
-    $bef08b463d312310$var$mc.push({
-        type: "text",
-        text: `(This is a multiple choice question so pick the correct option and return just a single number representing the option) Options: ${mcInput}`
-    });
-}
 const $bef08b463d312310$var$subject = document.querySelector(".question-progress-subject");
 const $bef08b463d312310$var$context = {
     type: "text",
@@ -27644,22 +27631,13 @@ async function $bef08b463d312310$var$main() {
         model: "models/gemini-3.5-flash-lite",
         input: [
             $bef08b463d312310$var$context,
-            ...$bef08b463d312310$var$question,
-            ...$bef08b463d312310$var$mc
+            ...$bef08b463d312310$var$question
         ],
         generation_config: $bef08b463d312310$var$generationConfig
     });
     if (interaction.output_text) {
         console.log(interaction.output_text);
-        if ($bef08b463d312310$var$textField) {
-            $bef08b463d312310$var$textField.value = interaction.output_text;
-            document.querySelector(`#submit-answer-button`).click();
-            return;
-        } else if ($bef08b463d312310$var$mc) document.querySelector(`button[value='${interaction.output_text}']`).click();
-        else {
-            console.log('error! no input found');
-            return;
-        }
+        $bef08b463d312310$var$textField.value = interaction.output_text;
     }
 }
 $bef08b463d312310$var$main(); // First test: Higher Periodicity 4/5 Note: Model used wrong terms (Atomic radius and not Covalent radius)
